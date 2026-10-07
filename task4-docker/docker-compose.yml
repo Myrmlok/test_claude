@@ -1,0 +1,63 @@
+# Запуск всего приложения: docker compose up --build
+services:
+  # Backend на Node.js (собирается из Dockerfile)
+  backend:
+    build: .
+    ports:
+      - "3000:3000"           # порт_компьютера:порт_контейнера
+    environment:              # параметры подключения через переменные окружения
+      PORT: 3000
+      DB_HOST: postgres       # имя сервиса = имя хоста в Docker-сети
+      DB_PORT: 5432
+      DB_USER: postgres
+      DB_PASSWORD: postgres
+      DB_NAME: shop
+      REDIS_URL: redis://redis:6379
+      CACHE_TTL: 60           # время жизни кэша, секунд
+    depends_on:               # backend стартует, когда БД и Redis готовы
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    networks:
+      - app-network
+
+  # Основная база данных
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: shop
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres-data:/var/lib/postgresql/data   # данные БД сохраняются в volume
+    healthcheck:              # проверка, что PostgreSQL готов принимать подключения
+      test: ["CMD-SHELL", "pg_isready -U postgres -d shop"]
+      interval: 3s
+      timeout: 3s
+      retries: 10
+    networks:
+      - app-network
+
+  # Кэш
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 3s
+      timeout: 3s
+      retries: 10
+    networks:
+      - app-network
+
+# Docker-сеть: внутри неё контейнеры видят друг друга по именам сервисов
+networks:
+  app-network:
+
+# Volume: хранит данные PostgreSQL, переживает перезапуск и удаление контейнеров
+volumes:
+  postgres-data:

@@ -1,0 +1,14 @@
+{
+  "name": "task1-server",
+  "version": "1.0.0",
+  "description": "REST API для книг (Express + Swagger)",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^5.1.0",
+    "swagger-ui-express": "^5.0.1"
+  }
+}

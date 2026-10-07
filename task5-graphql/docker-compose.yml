@@ -1,0 +1,7 @@
+# Запуск RabbitMQ: docker compose up -d
+services:
+  rabbitmq:
+    image: rabbitmq:3-management
+    ports:
+      - "5672:5672"     # порт для приложений (протокол AMQP)
+      - "15672:15672"   # веб-панель: http://localhost:15672 (логин/пароль guest/guest)

@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Заметки</title>
+    <!-- Подключаем манифест — без него приложение нельзя установить -->
+    <link rel="manifest" href="manifest.json" />
+    <meta name="theme-color" content="#2f6fed" />
+    <link rel="icon" href="icons/icon-192.png" />
+    <link rel="apple-touch-icon" href="icons/icon-192.png" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header>
+      <h1>📝 Заметки</h1>
+      <span id="status" class="status"></span>
+    </header>
+
+    <main>
+      <form id="note-form">
+        <textarea id="note-text" placeholder="Текст заметки..." required></textarea>
+        <button type="submit">Добавить</button>
+      </form>
+
+      <ul id="notes-list"></ul>
+    </main>
+
+    <script src="app.js"></script>
+  </body>
+</html>

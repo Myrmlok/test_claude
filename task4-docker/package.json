@@ -1,0 +1,14 @@
+{
+  "name": "task4-products",
+  "version": "1.0.0",
+  "description": "REST API товаров: Express + PostgreSQL + Redis + Docker",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js"
+  },
+  "dependencies": {
+    "express": "^5.1.0",
+    "pg": "^8.16.0",
+    "redis": "^5.8.0"
+  }
+}
