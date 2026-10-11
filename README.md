@@ -7,6 +7,7 @@
 | [`task3-pwa`](task3-pwa) | №3 — Заметки как PWA | HTML/CSS/JS, Service Worker, Manifest |
 | [`task4-docker`](task4-docker) | №4 — Товары + БД + кэш + Docker | Express, PostgreSQL, Redis, Docker Compose |
 | [`task5-graphql`](task5-graphql) | №5 — GraphQL + брокер сообщений | Apollo Server, RabbitMQ |
+| [`playlist-maker`](playlist-maker) | Playlist Maker: экраны поиска, настроек и навигация | Kotlin, Jetpack Compose, Navigation Compose |
 
 В каждой папке есть:
 - `README.md` — как запустить и что показать преподавателю;
